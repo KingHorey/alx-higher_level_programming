@@ -1,9 +1,9 @@
 # ALX's Higher level programming
 
 ## Table of Content
-* [General Information] (#General-information)
-* [Documentation Styles] (#Documentation-styles)
-* [Technology] (#technology)
+* [General Information](#General-information)
+* [Documentation Styles](#Documentation-styles)
+* [Technology](#technology)
 
 ### General Information
 This directory contains solution to tasks given by ALX in an attempt to introduce and solify understanding concept of higher level programming
