@@ -7,4 +7,4 @@ def uppercase(str):
             name += chr(value)
         else:
             name += i
-    print(f"{name}")
+    print("{:s}".format(name))
