@@ -7,7 +7,9 @@ def main():
 
     for name in names:
         if name[0] == '_' and name[1] == "_":
-            print("{:s}".format(name))
+            continue
+        else:
+            print("{}".format(name))
 
 
 if __name__ == "__main__":
