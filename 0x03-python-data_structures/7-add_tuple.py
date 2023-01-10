@@ -4,8 +4,26 @@ def add_tuple(tuple_a=(), tuple_b=()):
     len2 = len(tuple_b)
     result = []
 
-    if len2 == 1:
-        for i in range(0,2):
+    if len1 == 1 and len2 == 1:
+        for i in range(0, 2):
+            if i < 1:
+                num = 0
+                num += tuple_a[0]
+                num += tuple_b[0]
+                result.append(num)
+            else:
+                result.append(0)
+    elif len1 == 1:
+        for i in range(0, 2):
+            if i == 1:
+                result.append(tuple_b[i])
+            else:
+                num = 0
+                num += tuple_a[i]
+                num += tuple_b[i]
+                result.append(num)
+    elif len2 == 1:
+        for i in range(0, 2):
             if i == 1:
                 result.append(tuple_a[i])
             else:
@@ -13,6 +31,9 @@ def add_tuple(tuple_a=(), tuple_b=()):
                 num += tuple_a[i]
                 num += tuple_b[i]
                 result.append(num)
+    elif len1 == 0 and len2 == 0:
+        for i in range(0, 2):
+            result.append(0)
     elif len2 == 0:
         for i in range(0, 2):
             result.append(tuple_a[i])
