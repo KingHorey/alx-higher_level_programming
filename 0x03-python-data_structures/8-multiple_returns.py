@@ -2,7 +2,7 @@
 def multiple_returns(sentence):
     sentences = list(sentence)
     new_sentence = []
-    if sentences is None:
+    if sentences is None or len(sentences) < 1:
         lgth = 0
         index = None
         new_sentence.append(lgth)
