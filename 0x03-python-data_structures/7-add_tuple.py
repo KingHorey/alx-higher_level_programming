@@ -37,6 +37,9 @@ def add_tuple(tuple_a=(), tuple_b=()):
     elif len2 == 0:
         for i in range(0, 2):
             result.append(tuple_a[i])
+    elif len1 == 0:
+        for i in range(0,2):
+            result.append(tuple_b[i])
     else:
         for i in range(0, 2):
             num = 0
