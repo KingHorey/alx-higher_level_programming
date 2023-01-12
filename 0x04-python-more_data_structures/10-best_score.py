@@ -4,5 +4,7 @@ def best_score(a_dictionary):
         return None
     else:
         hghst = max(a_dictionary)
-
-    return hghst
+        if not hghst:
+            return None
+        else:
+            return hghst
