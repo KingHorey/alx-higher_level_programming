@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 def update_dictionary(a_dictionary, key, value):
     if not a_dictionary:
-        return 0
+        return None
     if not key:
         return a_dictionary
     if not value:
