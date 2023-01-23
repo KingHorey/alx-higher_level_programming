@@ -10,7 +10,10 @@ def safe_print_list(my_list=[], x=0):
             while i < x:
                 print(my_list[i], end="")
                 i += 1
+            print()
+            return(i)
         except IndexError:
             print("Out of bounds")
-    print()
-    return (i)
+            return (0)
+    else:
+        return (0)
