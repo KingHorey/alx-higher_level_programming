@@ -4,7 +4,8 @@
 
 
 class Square:
-    """Getters and setters are used to set the size and find the area of a square"""
+    """Getters and setters are used to set the size
+    and find the area of a square"""
     def __init__(self, size=0):
         self.__size = size
 
@@ -25,4 +26,4 @@ class Square:
 
     def area(self):
         """returns area of the square"""
-        return (self.__size  * self.__size)
+        return (self.__size * self.__size)
