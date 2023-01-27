@@ -73,7 +73,8 @@ class Square:
         if self.__size != 0:
             square = ""
             for i in range(self.__position[1]):
-                square += " "
+                square += ""
+            square += "\n"
             for i in range(self.__size):
                 square += " " * self.__position[0] + "#" * self.__size + "\n"
 
