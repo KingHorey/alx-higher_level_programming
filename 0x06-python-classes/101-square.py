@@ -77,4 +77,4 @@ class Square:
             for i in range(self.__size):
                 square += "\n" + " " * self.__position[0] + "#" * self.__size
 
-        return (square)
+        return (square.rstrip())
