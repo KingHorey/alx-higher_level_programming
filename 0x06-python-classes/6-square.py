@@ -10,8 +10,8 @@ class Square:
     makes uses of getters and setters"""
 
     def __init__(self, size=0, position=(0, 0)):
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):
@@ -21,7 +21,7 @@ class Square:
     def size(self, value):
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        if size < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
         else:
             self.__size = value
@@ -32,9 +32,9 @@ class Square:
 
     @position.setter
     def position(self, value):
-        if len(value) != 2 or isinstance(value, tuple) is False and\
-                not all(isinstance(val, int) for val in value) and\
-                not all(val >= 0 for val in value):
+        if not isinstance(value, tuple) or len(value) != 2 or\
+                (not all(isinstance(val, int) for val in value) or\
+                not all(val >= 0 for val in value)):
             raise TypeError("position must be a tuple of 2 positive integers")
         else:
             self.__position = value
