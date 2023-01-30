@@ -48,6 +48,7 @@ class Rectangle:
         return (2 * (self.__width + self.__height))
 
     def __str__(self):
+        """returns formal output for object"""
         output = ""
         for i in range(self.__height):
             output += "#" * self.__width + "\n"
