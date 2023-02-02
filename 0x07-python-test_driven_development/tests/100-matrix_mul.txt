@@ -83,3 +83,10 @@ each row of m_b must be of the same size
 ... except Exception as e:
 ... 	print(e)
 [[15.18, 31.2], [8.049999999999999, 16.54]]
+
+>>> try:
+...     matrix_mul([[1, 4], [1, 8]], [[1, "4"], [7, 10]])
+... except Exception as e:
+...     print(e)
+m_b should contain only integers or floats
+
