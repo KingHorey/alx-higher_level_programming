@@ -21,9 +21,9 @@ class BaseGeometry:
 
 
 class Rectangle(BaseGeometry):
+    """Inherits from the parent class"""
     def __init__(self, width, height):
+        self.integer_validator("width", width)
         self.__width = width
-        if type(height) is int:
-            self.__height = height
-        else:
-            raise TypeError("height must be an integer")
+        self.integer_validator("height", height)
+        self.__height = height
