@@ -1,28 +1,15 @@
 #!/usr/bin/python3
 
-""" NO modules imported"""
+""" Import parent class"""
 
-
-class BaseGeometry:
-    """
-    Geometry class for further operations
-    """
-    def area(self):
-        raise Exception("area() is not implemented")
-
-    def integer_validator(self, name, value):
-        """Validates the information that is provided"""
-        if value is True:
-            raise TypeError(f"{name} must be an integer")
-        if not isinstance(value, int):
-            raise TypeError(f"{name} must be an integer")
-        if value <= 0:
-            raise ValueError(f"{name} must be greater than 0")
+BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
 
 class Rectangle(BaseGeometry):
     """Inherits from the parent class"""
     def __init__(self, width, height):
+        """initialise attributes based on integer_validator from
+        parent class"""
         self.integer_validator("width", width)
         self.__width = width
         self.integer_validator("height", height)
