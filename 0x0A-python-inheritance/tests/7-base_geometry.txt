@@ -1,0 +1,20 @@
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+>>> tst = BaseGeometry()
+>>> try:
+... 	tst.integer_validator("Sam", 0)
+... except Exception as e:
+...	print(e)
+<name> must be greater than 0
+
+>>> try:
+... 	tst.integer_validator("Sam", "John")
+... except Exception as e:
+... 	print(e)
+<name> must be an integer
+
+>>> try:
+... 	tst.integer_validator("sam", None)
+... except Exception as e:
+...	print(e)
+<name> must be an integer
