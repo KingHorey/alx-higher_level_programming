@@ -61,4 +61,9 @@ integer_validator() missing 1 required positional argument: 'value'
 ...     print(e)
 integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
+>>> try:
+...     tst.integer_validator("Sam", True)
+... except Exception as e:
+...     print(e)
+Sam must be an integer
 
