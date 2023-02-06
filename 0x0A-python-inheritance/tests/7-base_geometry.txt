@@ -5,16 +5,40 @@
 ... 	tst.integer_validator("Sam", 0)
 ... except Exception as e:
 ...	print(e)
-<name> must be greater than 0
+Sam must be greater than 0
 
 >>> try:
 ... 	tst.integer_validator("Sam", "John")
 ... except Exception as e:
 ... 	print(e)
-<name> must be an integer
+Sam must be an integer
 
 >>> try:
 ... 	tst.integer_validator("sam", None)
 ... except Exception as e:
 ...	print(e)
-<name> must be an integer
+sam must be an integer
+
+>>> try:
+... 	tst.integer_validator("Jack", [1, 2, 3])
+... except Exception as e:
+... 	print(e)
+Jack must be an integer
+
+>>> try:
+... 	tst.integer_validator("Jack", {1, 3})
+... except Exception as e:
+...	print(e)
+Jack must be an integer
+
+>>> try:
+... 	tst.integer_validator("Jake", (1, 3))
+... except Exception as e:
+...	print(e)
+Jake must be an integer
+
+>>> try:
+... 	tst.integer_validator("Mil", [[2, 1,]])
+... except Exception as e:
+...	print(e)
+Mil must be an integer
