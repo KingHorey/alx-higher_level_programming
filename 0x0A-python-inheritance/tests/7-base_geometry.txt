@@ -73,3 +73,14 @@ integer_validator() missing 2 required positional arguments: 'name' and 'value'
 ...     print(e)
 Sam must be an integer
 
+>>> try:
+... 	tst.area()
+... except Exception as e:
+... 	print(e)
+area() is not implemented
+
+>>> try:
+...     tst.area(6)
+... except Exception as e:
+...     print(e)
+area() takes 1 positional argument but 2 were given
