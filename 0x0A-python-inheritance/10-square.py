@@ -2,7 +2,9 @@
 
 Rectangle = __import__('9-rectangle').Rectangle
 
-"""Import the Rectangle class, for operations"""
+"""
+Import the Rectangle class, for operations
+"""
 
 
 class Square(Rectangle):
@@ -11,7 +13,7 @@ class Square(Rectangle):
     """
 
     def __init__(self, size):
-        self.integer_validator("size", size)
+        Rectangle.integer_validator(self, "size", size)
         self.__size = size
 
     def area(self):
