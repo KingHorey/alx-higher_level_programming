@@ -96,3 +96,5 @@ sam must be greater than 0
 ... except Exception as e:
 ... 	print(e)
 sam must be an integer
+
+>>> tst.integer_validator("sam", 34)
