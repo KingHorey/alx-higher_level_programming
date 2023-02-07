@@ -23,6 +23,6 @@ class Square(Rectangle):
 
     def __str__(self):
         """Returns the dimension of the square"""
-        result = "[" + Rectangle.__name__ + "] "
+        result = "[Rectangle] "
         result += str(self.__size) + "/" + str(self.__size)
         return result
