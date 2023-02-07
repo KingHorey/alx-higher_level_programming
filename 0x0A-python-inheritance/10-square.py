@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 
-Rectangle = __import__('9-rectangle').Rectangle
-
 """
 Import the Rectangle class, for operations
 """
-
+Rectangle = __import__('9-rectangle').Rectangle
 
 class Square(Rectangle):
     """ Class defines the dimension for a square object using
@@ -13,7 +11,7 @@ class Square(Rectangle):
     """
 
     def __init__(self, size):
-        Rectangle.integer_validator(self, "size", size)
+        self.integer_validator("size", size)
         self.__size = size
 
     def area(self):
