@@ -3,7 +3,10 @@
 """
 Import the Rectangle class, for operations
 """
+
+
 Rectangle = __import__('9-rectangle').Rectangle
+
 
 class Square(Rectangle):
     """ Class defines the dimension for a square object using
