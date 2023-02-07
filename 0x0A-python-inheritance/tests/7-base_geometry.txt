@@ -91,3 +91,8 @@ area() takes 1 positional argument but 2 were given
 ...     print(e)
 sam must be greater than 0
 
+>>> try:
+... 	tst.integer_validator("sam", [1])
+... except Exception as e:
+... 	print(e)
+sam must be an integer
