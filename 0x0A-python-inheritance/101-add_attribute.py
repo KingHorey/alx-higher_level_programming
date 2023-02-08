@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+"""No modules"""
+
 
 def add_attribute(objects, key, value):
     """ Function sets an attribute to a class if possible
