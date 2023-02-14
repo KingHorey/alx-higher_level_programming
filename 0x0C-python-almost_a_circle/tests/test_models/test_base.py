@@ -69,12 +69,13 @@ class TestBase(unittest.TestCase):
         self.assertEqual(str, type(Base.to_json_string([info, info2])))
         self.assertEqual("[]", Base.to_json_string(None))
 
+
 class test_save_files_square(unittest.TestCase):
 
     def setUp(self):
         self.s = Square(3, 7, 8, 10)
         self.s2 = Square(4, 6, 1, 8)
-    
+
     def tearDown(self):
         try:
             os.remove('Square.json')
@@ -115,7 +116,8 @@ class test_save_files_rectangle(unittest.TestCase):
         Rectangle.save_to_file([self.r2, self.r])
         with open('Rectangle.json') as f:
             self.assertEqual(len(f.read()), 107)
-    
+
+
 class testJsonObj(unittest.TestCase):
 
     def setUp(self):
@@ -142,28 +144,39 @@ class testJsonObj(unittest.TestCase):
         convert to a jsonstring and to a python object
         """
         self.s2 = self.s2.to_dictionary()
-        jsonstr = Base.to_json_string([self.s2])
-        self.assertTrue(list == type(Base.from_json_string(jsonstr)))
+        jsonst = Base.to_json_string([self.s2])
+        self.assertNotTrue(isinstance(list, type(Base.from_json_string(jsonst))))
 
     def test_lst_square(self):
         """ return python object from json str """
         self.r1 = self.r1.to_dictionary()
-        jsonstr = Base.to_json_string([self.r1])
-        self.assertTrue(list == type(Base.from_json_string(jsonstr)))
+        jsonst = Base.to_json_string([self.r1])
+        self.assertNotTrue(isinstance(list, type(Base.from_json_string(jsonst))))
 
     def test_none(self):
-        self.assertTrue(list == type(Base.from_json_string(None)))
+        self.assertNotTrue(isinstance(list, type(Base.from_json_string(None))))
 
     def test_argsOverload(self):
+        """ test when more than 1 arg is passed """
         self.s2 = self.s2.to_dictionary()
         with self.assertRaises(TypeError):
-            Base.from_json_string([self.s, self.s1],[self.s2])
+            Base.from_json_string([self.s, self.s1], [self.s2])
 
 
+class testCreation(unittest.TestCase):
+    """ class to test edge caes when new instances
+    are created """
 
+    def setUp(self):
+        self.r = Rectangle(12, 4, 5)
+        self.r1 = Rectangle(13, 5, 1)
+        self.s = Square(9, 9, 4)
 
-        
-
+    def test_create(self):
+        r = self.r.to_dictionary()
+        r2 = Rectangle.create(**r)
+        self.assertEqual(f"[Rectangle] ({self.r.id}) {self.r.x}/{self.r.y} -"
+                         f" {self.r.width}/{self.r.height}", str(self.r))
 
 
 if __name__ == "__main__":
