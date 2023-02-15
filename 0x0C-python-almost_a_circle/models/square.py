@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
-from models.rectangle import *
 """ class Base to be imported """
+from models.rectangle import *
 
 
 class Square(Rectangle):
