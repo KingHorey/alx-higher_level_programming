@@ -9,6 +9,39 @@ from models.square import *
 
 class TestBase(unittest.TestCase):
     """Unittest cased for base.py"""
+    def test_instance(self):
+        r = Rectangle(1, 3, 3)
+        s = Square(1, 3)
+        print(r.id)
+        print(Base._Base__nb_objects)
+        #self.assertEqual(Base._Base__nb_objects, r.id)
+        self.assertEqual(3, r.id)
+        self.assertEqual(Base._Base__nb_objects, s.id)
+
+    def test_three_square_args(self):
+        s = Square(1, 2, 3)
+        self.assertEqual(Base._Base__nb_objects, s.id)
+
+    def test_three_rec_args(self):
+        r1 = Rectangle(1, 2, 3)
+        self.assertEqual(Base._Base__nb_objects, r1.id)
+
+    def test_id_provided(self):
+        """ test case when id is provided"""
+        r = Rectangle(1, 2, 4, 5, 5)
+        s = Square(1, 2, 5, 5)
+        self.assertEqual(5, r.id)
+        self.assertEqual(5, s.id)
+
+
+    def test_strings(self):
+        """ test when args is not an int"""
+
+        with self.assertRaises(TypeError):
+            r = Rectangle("1", 4)
+
+        with self.assertRaises(TypeError):
+            s = Square("1", 4)
 
     def test_none(self):
         b1 = Base(12)
@@ -145,16 +178,16 @@ class testJsonObj(unittest.TestCase):
         """
         self.s2 = self.s2.to_dictionary()
         jsonst = Base.to_json_string([self.s2])
-        self.assertNotTrue(isinstance(list, type(Base.from_json_string(jsonst))))
+        self.assertFalse(isinstance(list, type(Base.from_json_string(jsonst))))
 
     def test_lst_square(self):
         """ return python object from json str """
         self.r1 = self.r1.to_dictionary()
         jsonst = Base.to_json_string([self.r1])
-        self.assertNotTrue(isinstance(list, type(Base.from_json_string(jsonst))))
+        self.assertFalse(isinstance(list, type(Base.from_json_string(jsonst))))
 
     def test_none(self):
-        self.assertNotTrue(isinstance(list, type(Base.from_json_string(None))))
+        self.assertFalse(isinstance(list, type(Base.from_json_string(None))))
 
     def test_argsOverload(self):
         """ test when more than 1 arg is passed """
