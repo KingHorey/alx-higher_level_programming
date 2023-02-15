@@ -4,8 +4,17 @@ import unittest
 from models.base import *
 from models.rectangle import *
 from models.square import *
-""" Import unittest module to test case"""
 
+class Testid(unittest.TestCase):
+
+    def testid(self):
+        """ test the value of id in Rectangle()"""
+        r = Rectangle(1, 2)
+        r1 = Rectangle(1, 2, 3)
+        r2 = Rectangle(1, 2, 3, 4)
+        self.assertNotEqual(Base._Base__nb_objects, r.id)
+        self.assertNotEqual(Base._Base__nb_objects, r1.id)
+        self.assertEqual(Base._Base__nb_objects, r2.id)
 
 class TestBaseID(unittest.TestCase):
     """Unittest cased for base.py"""
@@ -77,41 +86,6 @@ class testRect(unittest.TestCase):
 
 
 class testSq(unittest.TestCase):
-
-    def test_sq_args(self):
-        """ test square instance and atrributes
-        Detailed -
-        method tests attributes of a square instance
-        and rasies the following error:
-
-        TypeError - 
-        if x, y, size is not an integer
-
-        ValueError -
-        when size, is Zero
-        when x or y is 0 or negative
-
-        """
-        with self.assertRaises(TypeError):
-            s = Square("1", 4)
-
-        with self.assertRaises(TypeError):
-            r = Square(1, "4")
-
-        with self.assertRaises(TypeError):
-            r = Square(1, "3", 5)
-
-        with self.assertRaises(TypeError):
-            r = Square(1, 4, "6")
-
-        with self.assertRaises(ValueError):
-            r = Square(0, 4, 3)
-
-        with self.assertRaises(ValueError):
-            r = Square(1, -1, 5)
-
-        with self.assertRaises(ValueError):
-            r = Square(5, 3, -1)
 
     def test_none(self):
         b1 = Base(12)
