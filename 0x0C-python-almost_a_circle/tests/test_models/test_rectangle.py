@@ -12,6 +12,7 @@ class TestBase(unittest.TestCase):
 
 
     def test_setter(self):
+        """ tests type of width and height """
         r1 = Rectangle(3, 1)
         r2 = Rectangle(4, 5)
         self.assertIsInstance(r2.width, int)
@@ -34,4 +35,11 @@ class TestBase(unittest.TestCase):
         with self.assertRaises(ValueError):
             r1.y = -7
 
+    def testarea(self):
+        r1 = Rectangle(4, 5)
+        self.assertEqual(20, r1.area())
 
+    def test_display(self):
+        """ test method display """
+        r = Rectangle(2, 4)
+        self.assertEqual(8, len(r.display())

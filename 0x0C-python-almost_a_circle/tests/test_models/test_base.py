@@ -46,8 +46,8 @@ class TestBaseID(unittest.TestCase):
         self.assertEqual(5, r.id)
         self.assertEqual(5, s.id)
 
-    def test_strings(self):
-        """ test when args is not an int"""
+    def test_rect_strings(self):
+        """ test instances of rectangle when args is not an int"""
 
         with self.assertRaises(TypeError):
             r = Rectangle("1", 4)
@@ -56,10 +56,10 @@ class TestBaseID(unittest.TestCase):
             r = Rectangle(1, "4")
 
         with self.assertRaises(TypeError):
-            r = Square(1, "4")
+            r = Rectangle(1, 4, "4")
 
         with self.assertRaises(TypeError):
-            s = Square("1", 4)
+            r = Rectangle(1, 4, 4, "6")
 
         with self.assertRaises(ValueError):
             r = Rectangle(0, 4, 3, 6)
@@ -72,6 +72,32 @@ class TestBaseID(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             r = Rectangle(1, 4, 0, -4)
+    
+    def test_sq_args(self):
+        """ test square instance and atrributes
+        Detailed -
+        method tests attributes of a square instance
+        and rasies the following error:
+
+        TypeError - 
+        if x, y, size is not an integer
+
+        ValueError -
+        when size, is Zero
+        when x or y is 0 or negative
+
+        """
+        with self.assertRaises(TypeError):
+            s = Square("1", 4)
+
+        with self.assertRaises(TypeError):
+            r = Square(1, "4")
+
+        with self.assertRaises(TypeError):
+            r = Square(1, "3", 5)
+
+        with self.assertRaises(TypeError):
+            r = Square(1, 4, "6")
 
         with self.assertRaises(ValueError):
             r = Square(0, 4, 3)
