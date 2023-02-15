@@ -102,7 +102,10 @@ class Base:
         **dictionary: kwargs containing key-value pairs to be
         used in instantiation
         """
-        dummy = cls(1, 1)
+        if cls.__name__ is not "Square":
+            dummy = cls(1, 1)
+        else:
+            dummy = cls(1)
         dummy.update(**dictionary)
         return (dummy)
 
