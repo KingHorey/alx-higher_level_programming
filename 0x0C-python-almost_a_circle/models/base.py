@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
 import json
+""" import json to handle creation of json strings"""
 import os.path
-""" Import JSON """
+""" Import os.path to check if file exists """
 
 
 class Base:
@@ -12,6 +13,7 @@ class Base:
     __nb_objects = 0
 
     def __init__(self, id=None):
+        """ instance initialiser """
         if id is not None:
             self.id = id
         else:
@@ -33,7 +35,7 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """ Writes JSON string to file"""
+        """ Writes JSON string to file and overwrites if it exists"""
         filename = str(cls.__name__) + ".json"
         if list_objs is None or len(list_objs) <= 0:
             result = []
