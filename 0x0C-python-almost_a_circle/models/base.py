@@ -1,9 +1,9 @@
 #!/usr/bin/python3
 
+""" import json to handle creation of json strings and os for file validation
+"""
 import json
-""" import json to handle creation of json strings"""
 import os.path
-""" Import os.path to check if file exists """
 
 
 class Base:
