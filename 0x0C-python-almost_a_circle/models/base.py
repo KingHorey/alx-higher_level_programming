@@ -17,7 +17,18 @@ class Base:
 
     def __init__(self, id=None):
         """ instance initialiser, setting the value of
-        self.id to id if not None"""
+        self.id
+        
+        Conditions:
+        if id is None, the private class attribute is incremented,
+        and self.id takes on the value of the class attribute
+        ex:
+        Base.__nb_objects += 1
+        self.id = Base.__nb_objects
+
+        Otherwise, self.id takes on the value of id that was passed
+        during instantiation
+        """
         if id is not None:
             self.id = id
         else:
@@ -26,7 +37,9 @@ class Base:
 
     @property
     def nb_objects(self):
-        """ returns number of objects that has been created"""
+        """ returns number of objects that has been created when instances of
+        the subclass Base are made
+        """
         return (Base.__nb_objects)
 
     @staticmethod
@@ -34,6 +47,10 @@ class Base:
         """ Returns a JSON string
         Args: list_dictionaries:
         a list of dictionaries of instance attribues
+
+        Conditions:
+        if list_dictionaries is none, an empty list presented as
+        a string is returned
         """
         if list_dictionaries is None:
             return "[]"
@@ -42,7 +59,14 @@ class Base:
 
     @classmethod
     def save_to_file(cls, list_objs):
-        """ Writes JSON string to file and overwrites if it exists"""
+        """ Writes JSON string from a file (class_name).json
+        Args: list_objs is a list of instancesthat inherits
+        from Base
+        
+        Conditions:
+        if list_objs is empty, an empty list is written into the file.
+        Otherwise, the content is overwritten with the new instance
+        """
         filename = str(cls.__name__) + ".json"
         if list_objs is None or len(list_objs) <= 0:
             result = []
@@ -59,21 +83,35 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """ Returns a python list object from a json string """
+        """ Returns a python list object from a json string 
+        Args:
+        json_string is a json string representation that is to be
+        converted to a serializable python object.
+
+        Conditions:
+        if json_string is None, an empty list is returned
+        """
         if json_string is None:
             return ([])
         return (json.loads(json_string))
 
     @classmethod
     def create(cls, **dictionary):
-        """ creates an instance, diff from the normal instance """
+        """ creates an instance, diff from the normal instance 
+        Args: 
+        **dictionary: kwargs containing key-value pairs to be
+        used in instantiation
+        """
         dummy = cls(1, 1)
         dummy.update(**dictionary)
         return (dummy)
 
     @classmethod
     def load_from_file(cls):
-        """ returns a list of instances, by creating a new instance """
+        """ returns a list of instances, by creating a new instance 
+        function reads a file (class_name).json if it exists and writes
+         into it. Otherwise, it returns an empty list object
+        """
         filename = str(cls.__name__) + ".json"
         result = []
         if not os.path.isfile(filename):
