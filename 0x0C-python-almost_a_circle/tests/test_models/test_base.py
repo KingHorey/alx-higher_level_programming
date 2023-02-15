@@ -7,13 +7,21 @@ from models.square import *
 """ Import unittest module to test case"""
 
 
-class TestBase(unittest.TestCase):
+class TestBaseID(unittest.TestCase):
     """Unittest cased for base.py"""
-    def test_instance(self):
-        r = Rectangle(1, 3, 3)
-        s = Square(1, 3)
-        self.assertEqual(3, r.id)
+    def test_one_args(self):
+        """ test instance of Square with one attribute """
+        s = Square(3)
         self.assertEqual(Base._Base__nb_objects, s.id)
+
+    def test_instance(self):
+        """ test instances where ID is not provided"""
+        s = Square(1, 3)
+        self.assertEqual(Base._Base__nb_objects, s.id)
+    
+    def test_two_rec_args(self):
+        r = Rectangle(1, 2)
+        self.assertEqual(Bae._Base__nb_objects, r.id)
 
     def test_three_square_args(self):
         s = Square(1, 2, 3)
@@ -22,6 +30,14 @@ class TestBase(unittest.TestCase):
     def test_three_rec_args(self):
         r1 = Rectangle(1, 2, 3)
         self.assertEqual(Base._Base__nb_objects, r1.id)
+
+    def test_four_rec_args(self):
+        r1 = Rectangle(1, 3, 5, 2)
+        self.assertEqual(Base._Base__nb_objects, r1.id)
+
+    def test_two_rec_args(self):
+        r = Rectangle(1, 4)
+        self.assertEqual(Base._Base__nb_objects, r.id)
 
     def test_id_provided(self):
         """ test case when id is provided"""
