@@ -18,7 +18,7 @@ class Base:
     def __init__(self, id=None):
         """ instance initialiser, setting the value of
         self.id
-        
+
         Conditions:
         if id is None, the private class attribute is incremented,
         and self.id takes on the value of the class attribute
@@ -83,7 +83,7 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """ Returns a python list object from a json string 
+        """ Returns a python list object from a json string
         Args:
         json_string is a json string representation that is to be
         converted to a serializable python object.
