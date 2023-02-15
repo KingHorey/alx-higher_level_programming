@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import unittest
-from models.base import *
+from models.base import Base
 from models.rectangle import *
 from models.square import *
 """ Import unittest module to test case"""
@@ -10,6 +10,44 @@ from models.square import *
 class TestBase(unittest.TestCase):
     """Unittest cased for base.py"""
 
+    def test_rect_strings(self):
+
+        """ test square instance and atrributes
+        Detailed -
+        method tests attributes of a square instance
+        and rasies the following error:
+
+        TypeError -
+        if x, y, size is not an integer
+
+        ValueError -
+        when width, height, is Zero
+        when x or y is 0 or negative
+
+        """
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 4, 3, 6)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 0, 5, 7)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(5, 3, -1, 5)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 4, 0, -4)
+
+        with self.assertRaises(TypeError):
+            r = Rectangle("1", 4)
+
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, "4")
+
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 4, "4")
+
+        with self.assertRaises(TypeError):
+            r = Rectangle(1, 4, 4, "6")
 
     def test_setter(self):
         """ tests type of width and height """
@@ -19,21 +57,6 @@ class TestBase(unittest.TestCase):
         self.assertIsInstance(r1.height, int)
         self.assertIsInstance(r2.height, int)
         self.assertIsInstance(r1.width, int)
-
-    def test_exception(self):
-        r1 = Rectangle(5, 5)
-        with self.assertRaises(TypeError):
-            r1.width = "w"
-        with self.assertRaises(TypeError):
-            r1.height = "5"
-        with self.assertRaises(ValueError):
-            r1.width = 0
-        with self.assertRaises(ValueError):
-            r1.height = 0
-        with self.assertRaises(ValueError):
-            r1.x = -1
-        with self.assertRaises(ValueError):
-            r1.y = -7
 
     def testarea(self):
         r1 = Rectangle(4, 5)
