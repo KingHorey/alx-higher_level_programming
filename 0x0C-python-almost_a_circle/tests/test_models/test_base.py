@@ -12,9 +12,6 @@ class TestBase(unittest.TestCase):
     def test_instance(self):
         r = Rectangle(1, 3, 3)
         s = Square(1, 3)
-        print(r.id)
-        print(Base._Base__nb_objects)
-        #self.assertEqual(Base._Base__nb_objects, r.id)
         self.assertEqual(3, r.id)
         self.assertEqual(Base._Base__nb_objects, s.id)
 
@@ -33,7 +30,6 @@ class TestBase(unittest.TestCase):
         self.assertEqual(5, r.id)
         self.assertEqual(5, s.id)
 
-
     def test_strings(self):
         """ test when args is not an int"""
 
@@ -41,7 +37,34 @@ class TestBase(unittest.TestCase):
             r = Rectangle("1", 4)
 
         with self.assertRaises(TypeError):
+            r = Rectangle(1, "4")
+
+        with self.assertRaises(TypeError):
+            r = Square(1, "4")
+
+        with self.assertRaises(TypeError):
             s = Square("1", 4)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(0, 4, 3, 6)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 0, 5, 7)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(5, 3, -1, 5)
+
+        with self.assertRaises(ValueError):
+            r = Rectangle(1, 4, 0, -4)
+
+        with self.assertRaises(ValueError):
+            r = Square(0, 4, 3)
+
+        with self.assertRaises(ValueError):
+            r = Square(1, -1, 5)
+
+        with self.assertRaises(ValueError):
+            r = Square(5, 3, -1)
 
     def test_none(self):
         b1 = Base(12)
@@ -152,6 +175,7 @@ class test_save_files_rectangle(unittest.TestCase):
 
 
 class testJsonObj(unittest.TestCase):
+    """ class tests the to_json_string in the base class """
 
     def setUp(self):
         self.s = [{'id': 89, 'width': 10, 'height': 4}]
@@ -186,6 +210,28 @@ class testJsonObj(unittest.TestCase):
         jsonst = Base.to_json_string([self.r1])
         self.assertFalse(isinstance(list, type(Base.from_json_string(jsonst))))
 
+    def test_few_attr(self):
+        s = Square(1, 3)
+        r = Rectangle(1, 4)
+        s = s.to_dictionary()
+        r = r.to_dictionary()
+        r_strs = Base.to_json_string([r])
+        s_strs = Base.to_json_string([s])
+        self.assertFalse(isinstance(list, type(Base.from_json_string(s_strs))))
+        self.assertFalse(isinstance(list, type(Base.from_json_string(r_strs))))
+
+    def test_one_args(self):
+        """ tests to_json_string when arguments provided
+        range from 1"""
+        s = Square(1)
+        r = Rectangle(4, 5)
+        s = s.to_dictionary()
+        r = r.to_dictionary()
+        r_str = Base.to_json_string([r])
+        s_str = Base.to_json_string([s])
+        self.assertEqual(list, type(Base.from_json_string(s_str)))
+        self.assertEqual(list, type(Base.from_json_string(r_str)))
+
     def test_none(self):
         self.assertFalse(isinstance(list, type(Base.from_json_string(None))))
 
@@ -195,13 +241,18 @@ class testJsonObj(unittest.TestCase):
         with self.assertRaises(TypeError):
             Base.from_json_string([self.s, self.s1], [self.s2])
 
+    def test_argsUnderload(self):
+        """ test when more than 1 arg is passed """
+        with self.assertRaises(TypeError):
+            Base.from_json_string()
+
 
 class testCreation(unittest.TestCase):
     """ class to test edge caes when new instances
     are created """
 
     def setUp(self):
-        self.r = Rectangle(12, 4, 5)
+        self.r = Rectangle(12, 4)
         self.r1 = Rectangle(13, 5, 1)
         self.s = Square(9, 9, 4)
 
@@ -210,6 +261,18 @@ class testCreation(unittest.TestCase):
         r2 = Rectangle.create(**r)
         self.assertEqual(f"[Rectangle] ({self.r.id}) {self.r.x}/{self.r.y} -"
                          f" {self.r.width}/{self.r.height}", str(self.r))
+        sq = Square.create(**{'size': 1})
+        self.assertEqual(f"[Square] ({sq.id}) {sq.x}/{sq.y} - {sq.size}",
+                         str(sq))
+        sq = Square(12, 4)
+        self.assertEqual(f"[Square] ({sq.id}) {sq.x}/{sq.y} - {sq.size}",
+                         str(sq))
+        sq = Square(12, 4, 4, 6)
+        self.assertEqual(f"[Square] ({sq.id}) {sq.x}/{sq.y} - {sq.size}",
+                         str(sq))
+        sq = Square(12)
+        self.assertEqual(f"[Square] ({sq.id}) {sq.x}/{sq.y} - {sq.size}",
+                         str(sq))
 
 
 if __name__ == "__main__":
