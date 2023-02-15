@@ -38,8 +38,3 @@ class TestBase(unittest.TestCase):
     def testarea(self):
         r1 = Rectangle(4, 5)
         self.assertEqual(20, r1.area())
-
-    def test_display(self):
-        """ test method display """
-        r = Rectangle(2, 4)
-        self.assertEqual(8, len(r.display())
