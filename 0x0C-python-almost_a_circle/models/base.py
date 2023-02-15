@@ -62,7 +62,7 @@ class Base:
         """ Writes JSON string from a file (class_name).json
         Args: list_objs is a list of instancesthat inherits
         from Base
-        
+
         Conditions:
         if list_objs is empty, an empty list is written into the file.
         Otherwise, the content is overwritten with the new instance
@@ -97,8 +97,8 @@ class Base:
 
     @classmethod
     def create(cls, **dictionary):
-        """ creates an instance, diff from the normal instance 
-        Args: 
+        """ creates an instance, diff from the normal instance
+        Args:
         **dictionary: kwargs containing key-value pairs to be
         used in instantiation
         """
@@ -108,7 +108,7 @@ class Base:
 
     @classmethod
     def load_from_file(cls):
-        """ returns a list of instances, by creating a new instance 
+        """ returns a list of instances, by creating a new instance
         function reads a file (class_name).json if it exists and writes
          into it. Otherwise, it returns an empty list object
         """
