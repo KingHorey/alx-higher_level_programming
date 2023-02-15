@@ -8,12 +8,16 @@ import os.path
 
 class Base:
     """ Base class to be used as a package for other
-    files"""
+    files
+    class has a private class attribute to count the number
+    of instances created when is None
+    """
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        """ instance initialiser """
+        """ instance initialiser, setting the value of
+        self.id to id if not None"""
         if id is not None:
             self.id = id
         else:
@@ -22,12 +26,15 @@ class Base:
 
     @property
     def nb_objects(self):
-        """ returms number of objects"""
+        """ returns number of objects that has been created"""
         return (Base.__nb_objects)
 
     @staticmethod
     def to_json_string(list_dictionaries):
-        """ Returns a JSON representation of args"""
+        """ Returns a JSON string
+        Args: list_dictionaries:
+        a list of dictionaries of instance attribues
+        """
         if list_dictionaries is None:
             return "[]"
         json_rep = json.dumps(list_dictionaries)
@@ -52,21 +59,21 @@ class Base:
 
     @staticmethod
     def from_json_string(json_string):
-        """ Returns a list of json_string"""
+        """ Returns a python list object from a json string """
         if json_string is None:
             return ([])
         return (json.loads(json_string))
 
     @classmethod
     def create(cls, **dictionary):
-        """ creates an instance, diff from the normal instance"""
+        """ creates an instance, diff from the normal instance """
         dummy = cls(1, 1)
         dummy.update(**dictionary)
         return (dummy)
 
     @classmethod
     def load_from_file(cls):
-        """ returns a list of instances, by creating a new instance"""
+        """ returns a list of instances, by creating a new instance """
         filename = str(cls.__name__) + ".json"
         result = []
         if not os.path.isfile(filename):
