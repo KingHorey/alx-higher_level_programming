@@ -46,6 +46,8 @@ class TestBaseID(unittest.TestCase):
         self.assertEqual(5, r.id)
         self.assertEqual(5, s.id)
 
+class testRect(unittest.TestCase):
+
     def test_rect_strings(self):
         """ test instances of rectangle when args is not an int"""
 
@@ -72,7 +74,10 @@ class TestBaseID(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             r = Rectangle(1, 4, 0, -4)
-    
+
+
+class testSq(unittest.TestCase):
+
     def test_sq_args(self):
         """ test square instance and atrributes
         Detailed -
