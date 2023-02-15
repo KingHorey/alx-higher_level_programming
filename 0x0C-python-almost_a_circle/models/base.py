@@ -18,6 +18,11 @@ class Base:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
 
+    @property
+    def nb_objects(self):
+        """ returms number of objects"""
+        return (Base.__nb_objects)
+
     @staticmethod
     def to_json_string(list_dictionaries):
         """ Returns a JSON representation of args"""
@@ -64,9 +69,8 @@ class Base:
         result = []
         if not os.path.isfile(filename):
             return (result)
-        with open(filename, encoding="UTF-8") as f:
+        with open(filename, encoding="utf-8") as f:
             jstring = f.read()
             temp_save = cls.from_json_string(jstring)
-        for i in temp_save:
-            result.append(cls.create(**i))
+        result = [cls.create(**i) for i in temp_save]
         return (result)
