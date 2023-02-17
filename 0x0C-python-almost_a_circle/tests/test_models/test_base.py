@@ -231,14 +231,14 @@ class TestLoadFile(unittest.TestCase):
         list_rectangles_input = [r1, r2]
         Rectangle.save_to_file(list_rectangles_input)
         list_rectangles_output = Rectangle.load_from_file()
-        self.assertEqual(list, type(list_rectangles_output))
+        self.assertEqual(str(r1), str(list_rectangles_output[0]))
+        self.assertEqual(str(r2), str(list_rectangles_output[1]))
 
     def test_one_list(self):
         s = Rectangle(1, 4)
-        s1 = Rectangle(2, 3)
-        s = Rectangle.save_to_file([])
-        s = Rectangle.load_from_file()
-        self.assertEqual([], s)
+        s = Rectangle.save_to_file([s])
+        s_output = Rectangle.load_from_file()
+        self.assertEqual(str(s), str(str_output[0]))
 
     def test_empty_list(self):
         self.assertEqual(list, type(Square.load_from_file()))
