@@ -236,3 +236,23 @@ class TestToJson(unittest.TestCase):
     def test_to_json_none(self):
         """ Test when list_dictionaries is none """
         self.assertEqual("[]", Base.to_json_string(None))
+
+
+class TestLoadFile(unittest.TestCase):
+    """ Test load_from_file """
+
+    def test_empty_list(self):
+        self.assertEqual(list, type(Square.load_from_file()))
+
+    def test_one_list(self):
+        s = Square(1)
+        s = Square.save_to_file([s])
+        s = Square.load_from_file()
+        self.assertEqual(list, type(s))
+
+    def test_one_list(self):
+        s = Square(1, 4)
+        s1 = Square(2, 3)
+        s = Square.save_to_file([s, s1])
+        s = Square.load_from_file()
+        self.assertEqual(list, type(s))

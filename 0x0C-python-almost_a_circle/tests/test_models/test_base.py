@@ -127,18 +127,101 @@ class testJsonObj(unittest.TestCase):
             Base.from_json_string()
 
 
-class TestCreate(unittest.TestCase):
+class TestSqrCreate(unittest.TestCase):
 
     def setUp(self):
-        self.keys = {'id': 4, 'size': 6, 'x': 3, 'y': 17}
+        self.keys = {'id': 4}
+        self.keys1 = {'id': 4, 'size': 6}
+        self.keys2 = {'id': 4, 'size': 6, 'x': 3}
+        self.keys3 = {'id': 4, 'size': 6, 'x': 3, 'y': 17}
 
     def test_sqr_create(self):
         s = Square(2)
         s = s.create(**self.keys)
         self.assertEqual(4, s.id)
 
+    def test_sqr_create(self):
+        s = Square(2)
+        s = s.create(**self.keys1)
+        self.assertEqual(4, s.id)
+
+    def test_sqr_create(self):
+        s = Square(2)
+        s = s.create(**self.keys2)
+        self.assertEqual(4, s.id)
+
+
+    def test_sqr_create(self):
+        s = Square(2)
+        s = s.create(**self.keys3)
+        self.assertEqual(4, s.id)
+
+
+class TestRecCreate(unittest.TestCase):
+
+
     def test_rec_creat(self):
         keys = {'id': 4, 'width': 8, 'height': 9, 'x': 11, 'y': 16}
         r = Rectangle(3, 4)
         r = r.create(**keys)
         self.assertEqual(4, r.id)
+
+
+class TestSaveFile(unittest.TestCase):
+    """ Class saves to a file """
+
+
+    def test_none(self):
+        Square.save_to_file(None)
+        with open("Square.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+    def test_none(self):
+        Square.save_to_file([])
+        with open("Square.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+    def test_one_arg(self):
+        s = Square(3)
+        Square.save_to_file([s])
+        with open("Square.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+    def test_two_args(self):
+        s = Square(3)
+        s1 = Square(4)
+        Square.save_to_file([s, s1])
+        with open("Square.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+
+class TestSaveFile(unittest.TestCase):
+    """ Class saves to a file """
+
+
+    def test_none(self):
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+    def test_none(self):
+        Rectangle.save_to_file([])
+        with open("Rectangle.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+    def test_one_arg(self):
+        r = Square(3, 2)
+        Rectangle.save_to_file([r])
+        with open("Rectangle.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+    def test_two_args(self):
+        r = Rectangle(3, 3, 5, 6)
+        r1 = Rectangle(4, 4, 1, 5)
+        Square.save_to_file([r, r1])
+        with open("Rectangle.json") as f:
+            self.assertEqual(str, type(f.read()))
+
+
+
+
