@@ -52,3 +52,76 @@ class TestID(unittest.TestCase):
         b1 = Base()
         b1.id = {4, 5}
         self.assertEqual({4, 5}, b1.id)
+
+
+class testJsonObj(unittest.TestCase):
+    """ class tests the to_json_string in the base class """
+
+    def setUp(self):
+        self.s = [{'id': 89, 'width': 10, 'height': 4}]
+        self.s1 = [{'id': 89, 'width': 10, 'height': 4}]
+        self.s2 = Square(10, 2, 1)
+        self.r1 = Rectangle(16, 4, 4)
+
+    def test_one_str(self):
+        jsonstr = Base.to_json_string(self.s)
+        self.assertEqual(list, type(Base.from_json_string(jsonstr)))
+
+    def test_two_str(self):
+        jsonstr = Base.to_json_string([self.s, self.s1])
+        self.assertEqual(list, type(Base.from_json_string(jsonstr)))
+
+    def test_empty(self):
+        """ test empty list bases as a param"""
+        jsonstr = Base.to_json_string([])
+        self.assertTrue([] == Base.from_json_string(jsonstr))
+
+    def test_list(self):
+        """ create a dict from a list
+        convert to a jsonstring and to a python object
+        """
+        self.s2 = self.s2.to_dictionary()
+        jsonst = Base.to_json_string([self.s2])
+        self.assertFalse(isinstance(list, type(Base.from_json_string(jsonst))))
+
+    def test_lst_square(self):
+        """ return python object from json str """
+        self.r1 = self.r1.to_dictionary()
+        jsonst = Base.to_json_string([self.r1])
+        self.assertFalse(isinstance(list, type(Base.from_json_string(jsonst))))
+
+    def test_few_attr(self):
+        s = Square(1, 3)
+        r = Rectangle(1, 4)
+        s = s.to_dictionary()
+        r = r.to_dictionary()
+        r_strs = Base.to_json_string([r])
+        s_strs = Base.to_json_string([s])
+        self.assertFalse(isinstance(list, type(Base.from_json_string(s_strs))))
+        self.assertFalse(isinstance(list, type(Base.from_json_string(r_strs))))
+
+    def test_one_args(self):
+        """ tests to_json_string when arguments provided
+        range from 1"""
+        s = Square(1)
+        r = Rectangle(4, 5)
+        s = s.to_dictionary()
+        r = r.to_dictionary()
+        r_str = Base.to_json_string([r])
+        s_str = Base.to_json_string([s])
+        self.assertEqual(list, type(Base.from_json_string(s_str)))
+        self.assertEqual(list, type(Base.from_json_string(r_str)))
+
+    def test_none(self):
+        self.assertFalse(isinstance(list, type(Base.from_json_string(None))))
+
+    def test_argsOverload(self):
+        """ test when more than 1 arg is passed """
+        self.s2 = self.s2.to_dictionary()
+        with self.assertRaises(TypeError):
+            Base.from_json_string([self.s, self.s1], [self.s2])
+
+    def test_argsUnderload(self):
+        """ test when more than 1 arg is passed """
+        with self.assertRaises(TypeError):
+            Base.from_json_string()
