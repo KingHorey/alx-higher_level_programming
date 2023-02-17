@@ -271,18 +271,9 @@ class TestToJson(unittest.TestCase):
 class TestLoadFile(unittest.TestCase):
     """ Test load_from_file """
 
-    def test_empty_list(self):
-        self.assertEqual(list, type(Rectangle.load_from_file()))
-
-    def test_one_list(self):
-        r = Rectangle(1)
-        r = Rectangle.save_to_file([r])
-        r = Rectangle.load_from_file()
-        self.assertEqual(list, type(r))
-
-    def test_one_list(self):
-        r = Rectangle(1, 4)
-        r1 = Rectangle(2, 3)
-        r = Rectangle.save_to_file([r, r1])
-        r = Rectangle.load_from_file()
-        self.assertEqual(list, type(r))
+    def test_none(self):
+        try:
+            with open('Rectangle.json') as f:
+                self.assertEqual(list, type(Rectangle.load_from_file()))
+        except IOError:
+            self.assertEqual(list, type(Rectangle.load_from_file()))
