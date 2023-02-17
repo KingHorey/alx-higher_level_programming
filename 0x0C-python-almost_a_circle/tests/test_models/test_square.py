@@ -256,3 +256,19 @@ class TestLoadFile(unittest.TestCase):
         s = Square.save_to_file([s, s1])
         s = Square.load_from_file()
         self.assertEqual(list, type(s))
+
+
+    def test_one_list(self):
+        s = Square(1, 4)
+        s1 = Square(2, 3)
+        s = Square.save_to_file([])
+        s = Square.load_from_file()
+        self.assertEqual(list, type(s))
+
+    def test_one_list(self):
+        s = Square(1, 4)
+        s1 = Square(2, 3)
+        s = Square.save_to_file(None)
+        s = Square.load_from_file()
+        self.assertEqual(list, type(s))
+
