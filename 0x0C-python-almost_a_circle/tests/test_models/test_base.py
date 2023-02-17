@@ -125,3 +125,20 @@ class testJsonObj(unittest.TestCase):
         """ test when more than 1 arg is passed """
         with self.assertRaises(TypeError):
             Base.from_json_string()
+
+
+class TestCreate(unittest.TestCase):
+
+    def setUp(self):
+        self.keys = {'id': 4, 'size': 6, 'x': 3, 'y': 17}
+
+    def test_sqr_create(self):
+        s = Square(2)
+        s = s.create(**self.keys)
+        self.assertEqual(4, s.id)
+
+    def test_rec_creat(self):
+        keys = {'id': 4, 'width': 8, 'height': 9, 'x': 11, 'y': 16}
+        r = Rectangle(3, 4)
+        r = r.create(**keys)
+        self.assertEqual(4, r.id)
