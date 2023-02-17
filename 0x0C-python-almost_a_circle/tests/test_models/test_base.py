@@ -167,7 +167,7 @@ class TestRecCreate(unittest.TestCase):
         self.assertEqual(4, r.id)
 
 
-class TestSaveFile(unittest.TestCase):
+class TestSaveFiles(unittest.TestCase):
     """ Class saves to a file """
 
 
@@ -198,7 +198,6 @@ class TestSaveFile(unittest.TestCase):
 class TestSaveFile(unittest.TestCase):
     """ Class saves to a file """
 
-
     def test_none(self):
         Rectangle.save_to_file(None)
         with open("Rectangle.json") as f:
@@ -221,7 +220,3 @@ class TestSaveFile(unittest.TestCase):
         Square.save_to_file([r, r1])
         with open("Rectangle.json") as f:
             self.assertEqual(str, type(f.read()))
-
-
-
-
