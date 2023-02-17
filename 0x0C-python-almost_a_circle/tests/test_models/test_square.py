@@ -147,6 +147,31 @@ class TestUpdateArgs(unittest.TestCase):
         self.assertEqual(s.id, 6)
 
 
+class Test_str_(unittest.TestCase):
+    """ Test the __str__ method """
+
+    def setUp(self):
+        """ Create SQuare instances """
+        self.s = Square(4, 6)
+        self.s1 = Square(4, 6, 2)
+        self.s2 = Square(4, 6, 2, 1)
+
+    def testone(self):
+        """ Test the count of __str__ """
+        self.assertEqual(f"[Square] ({self.s.id}) {self.s.x}/"
+                         f"{self.s.y} - {self.s.size}", self.s.__str__())
+
+    def testone(self):
+        """ Test the count of __str__ """
+        self.assertEqual(f"[Square] ({self.s1.id}) {self.s1.x}/"
+                         f"{self.s1.y} - {self.s1.size}", self.s1.__str__())
+
+    def testone(self):
+        """ Test the count of __str__ """
+        self.assertEqual(f"[Square] ({self.s2.id}) {self.s2.x}/"
+                         f"{self.s2.y} - {self.s2.size}", self.s2.__str__())
+
+
 class TestKwargs(unittest.TestCase):
     """ This class tests kwargs in replacing attributes of an instance"""
 

@@ -4,6 +4,8 @@ import unittest
 from models.base import *
 from models.rectangle import *
 from models.square import *
+from io import StringIO
+import sys
 
 
 class Test_rec_id(unittest.TestCase):
@@ -106,6 +108,34 @@ class TestArea(unittest.TestCase):
         self.assertAlmostEqual(6, s.area())
 
 
+class Test_str_(unittest.TestCase):
+    """ Test the __str__ method """
+
+    def setUp(self):
+        """ Create Rectangle instances """
+        self.r = Rectangle(4, 6)
+        self.r1 = Rectangle(4, 6, 2)
+        self.r2 = Rectangle(4, 6, 2, 1)
+
+    def testone(self):
+        """ Test the count of __str__ """
+        self.assertEqual(f"[Rectangle] ({self.r.id}) {self.r.x}/"
+                         f"{self.r.y} - {self.r.width}/{self.r.height}",
+                         self.r.__str__())
+
+    def testone(self):
+        """ Test the count of __str__ """
+        self.assertEqual(f"[Rectangle] ({self.r1.id}) {self.r1.x}/"
+                         f"{self.r1.y} - {self.r1.width}/{self.r1.height}",
+                         self.r1.__str__())
+
+    def testone(self):
+        """ Test the count of __str__ """
+        self.assertEqual(f"[Rectangle] ({self.r2.id}) {self.r2.x}/"
+                         f"{self.r2.y} - {self.r2.width}/{self.r2.height}",
+                         self.r2.__str__())
+
+
 class TestUpdateArgs(unittest.TestCase):
     """ This class tests update(*args, **kwargs)
     ["id", "width", "height", "x", y]
@@ -178,6 +208,33 @@ class TestKwargs(unittest.TestCase):
         """ Test kwargs update for x """
         self.r.update(**self.dicts3)
         self.assertEqual(15, self.r.id)
+
+
+class TestDisplay(unittest.TestCase):
+    """ Test display method """
+
+    def setUp(self):
+        self.r = Rectangle(1, 2)
+        self.r1 = Rectangle(3, 2, 3)
+        self.r2 = Rectangle(5, 2, 3, 4)
+        self.r3 = Rectangle(7, 2, 3, 4, 5)
+
+    def test_out(self):
+        print(self.r.display())
+        self.assertEqual(print(""*self.r.y+""+" "*self.r.x + "#" *
+                               self.r.width), self.r.display())
+
+    def test_out(self):
+        self.assertEqual(print(""*self.r1.y+""+" "*self.r1.x + "#" *
+                               self.r1.width, self.r1.display()))
+
+    def test_out(self):
+        self.assertEqual(print(""*self.r2.y+""+" "*self.r2.x + "#" *
+                               self.r2.width), self.r2.display())
+
+    def test_out(self):
+        self.assertEqual(print(""*self.r3.y+""+" "*self.r3.x + "#" *
+                               self.r3.width), print(self.r3.display()))
 
 
 class TestToJson(unittest.TestCase):
