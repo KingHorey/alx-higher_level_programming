@@ -8,7 +8,7 @@ from io import StringIO
 import sys
 
 
-class Test_rec_id(unittest.TestCase):
+class TestrecId(unittest.TestCase):
     """ Test id attribute for Rectangle instances"""
 
     def test_none(self):
@@ -60,6 +60,42 @@ class TestSetters(unittest.TestCase):
         1. width or height is not an integer
         2. x or y is not an integer
     """
+
+
+    def test_none(self):
+        """ Test id for rec when None """
+        r = Rectangle(1, 2)
+        self.assertEqual(Base._Base__nb_objects, r.id)
+
+    def test_int_id(self):
+        """ test id when an int """
+        r = Rectangle(1, 2, 3, 4, 5)
+        self.assertEqual(5, r.id)
+
+    def test_str_id(self):
+        """ Test id when a string """
+        r = Rectangle(1, 2, 3, 4, "5")
+        self.assertEqual("5", r.id)
+
+    def test_dict_id(self):
+        """ Test id when a dict """
+        r = Rectangle(1, 2, 3, 4, {'x': 4, 'y': 5})
+        self.assertEqual({'x': 4, 'y': 5}, {'x': 4, 'y': 5})
+
+    def test_tuple_id(self):
+        """ test rectangle id when it is a tuple """
+        r = Rectangle(1, 2, 3, 4, (4, 5))
+        self.assertEqual((4, 5), r.id)
+
+    def test_list_id(self):
+        """ Test id when it is a list """
+        r = Rectangle(1, 2, 3, 4, [5, 6])
+        self.assertEqual([5, 6], r.id)
+
+    def test_set_id(self):
+        """ Test id when it is a set """
+        r = Rectangle(1, 2, 3, 4, {5, 6})
+        self.assertEqual({5, 6}, {5, 6})
 
     def test_width(self):
         """ test when width is a string """

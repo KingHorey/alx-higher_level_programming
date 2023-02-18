@@ -67,11 +67,15 @@ class testJsonObj(unittest.TestCase):
         jsonstr = Base.to_json_string(self.s)
         self.assertEqual(list, type(Base.from_json_string(jsonstr)))
 
+    def test_one_str(self):
+        jsonstr = Base.to_json_string([{ 'id': 12}])
+        self.assertEqual(list, type(Base.from_json_string(jsonstr)))
+
     def test_two_str(self):
         jsonstr = Base.to_json_string([self.s, self.s1])
         self.assertEqual(list, type(Base.from_json_string(jsonstr)))
 
-    def test_empty(self):
+    def testempty(self):
         """ test empty list bases as a param"""
         jsonstr = Base.to_json_string([])
         self.assertTrue([] == Base.from_json_string(jsonstr))
