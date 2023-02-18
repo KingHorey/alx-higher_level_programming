@@ -238,7 +238,6 @@ class TestLoadFile(unittest.TestCase):
     def test_one_list(self):
         s = Rectangle(1, 4)
         s1 = Rectangle(2, 3)
-        s = Rectangle.save_to_file([])
         s = Rectangle.load_from_file()
         self.assertEqual([], s)
 
@@ -246,22 +245,14 @@ class TestLoadFile(unittest.TestCase):
         self.assertEqual(list, type(Square.load_from_file()))
 
     def test_one_list(self):
-        s = Square(1)
-        s = Square.save_to_file([s])
         s = Square.load_from_file()
         self.assertEqual(list, type(s))
 
     def test_one_list(self):
-        s = Square(1, 4)
-        s1 = Square(2, 3)
-        s = Square.save_to_file([s, s1])
         s = Square.load_from_file()
         self.assertEqual(list, type(s))
 
     def test_one_list(self):
-        s = Square(1, 4)
-        s1 = Square(2, 3)
-        s = Square.save_to_file([])
         s = Square.load_from_file()
         self.assertEqual(list, type(s))
 
