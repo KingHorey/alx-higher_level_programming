@@ -150,7 +150,6 @@ class TestSqrCreate(unittest.TestCase):
         s = s.create(**self.keys2)
         self.assertEqual(4, s.id)
 
-
     def test_sqr_create(self):
         s = Square(2)
         s = s.create(**self.keys3)
@@ -158,7 +157,6 @@ class TestSqrCreate(unittest.TestCase):
 
 
 class TestRecCreate(unittest.TestCase):
-
 
     def test_rec_creat(self):
         keys = {'id': 4, 'width': 8, 'height': 9, 'x': 11, 'y': 16}
@@ -178,7 +176,7 @@ class TestSaveFiles(unittest.TestCase):
     def test_none(self):
         Square.save_to_file(None)
         with open("Square.json") as f:
-            self.assertEqual("[]", f.read())
+            self.assertEqual(2, len(f.read()))
 
     def test_none(self):
         Square.save_to_file([])

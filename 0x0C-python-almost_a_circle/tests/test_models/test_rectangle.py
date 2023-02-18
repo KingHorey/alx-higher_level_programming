@@ -225,9 +225,8 @@ class TestDisplay(unittest.TestCase):
 
     def test_out(self):
         print(self.r.display())
-        #value = self.r.display()
         if self.r.y == 0:
-            self.assertEqual("#\n#\n",TestDisplay.store.getvalue())
+            self.assertEqual("#\n#\n", TestDisplay.store.getvalue())
 
     def test_out(self):
         print(self.r1.display())
