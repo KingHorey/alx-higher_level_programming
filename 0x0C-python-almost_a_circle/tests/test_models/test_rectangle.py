@@ -275,3 +275,25 @@ class TestToJson(unittest.TestCase):
     def test_to_json_none(self):
         """ Test when list_dictionaries is none """
         self.assertEqual("[]", Base.to_json_string(None))
+
+
+class TestLoadFile(unittest.TestCase):
+    """ Test load_from_file """
+
+    def tearDown(self):
+        os.remove("Rectangle.json")
+
+    def test_none(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_rectangles_input = [r1, r2]
+        Rectangle.save_to_file(list_rectangles_input)
+        list_rectangles_output = Rectangle.load_from_file()
+        self.assertEqual(list, type(list_rectangles_output))
+
+    def test_one_list(self):
+        s = Rectangle(1, 4)
+        s1 = Rectangle(2, 3)
+        s = Rectangle.save_to_file([])
+        s = Rectangle.load_from_file()
+        self.assertEqual(list, type(s))
