@@ -169,30 +169,34 @@ class TestRecCreate(unittest.TestCase):
 
 class TestSaveFiles(unittest.TestCase):
     """ Class saves to a file """
-
+    def setUp(self):
+        try:
+            os.remove("Square.json")
+        except IOError:
+            pass
 
     def test_none(self):
         Square.save_to_file(None)
         with open("Square.json") as f:
-            self.assertEqual(str, type(f.read()))
+            self.assertEqual("[]", f.read())
 
     def test_none(self):
         Square.save_to_file([])
         with open("Square.json") as f:
-            self.assertEqual(str, type(f.read()))
+            self.assertEqual("[]", f.read())
 
     def test_one_arg(self):
         s = Square(3)
         Square.save_to_file([s])
         with open("Square.json") as f:
-            self.assertEqual(str, type(f.read()))
+            self.assertEqual(39, len(f.read()))
 
     def test_two_args(self):
         s = Square(3)
         s1 = Square(4)
         Square.save_to_file([s, s1])
         with open("Square.json") as f:
-            self.assertEqual(str, type(f.read()))
+            self.assertEqual(78, len(f.read()))
 
 
 class TestSaveFile(unittest.TestCase):
