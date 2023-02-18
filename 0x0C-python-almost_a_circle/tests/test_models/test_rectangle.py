@@ -213,28 +213,38 @@ class TestKwargs(unittest.TestCase):
 class TestDisplay(unittest.TestCase):
     """ Test display method """
 
+    tmp = sys.stdout
+    store = StringIO()
+    sys.stdout = store
+
     def setUp(self):
         self.r = Rectangle(1, 2)
         self.r1 = Rectangle(3, 2, 3)
-        self.r2 = Rectangle(5, 2, 3, 4)
+        self.r2 = Rectangle(3, 2, 2, 2)
         self.r3 = Rectangle(7, 2, 3, 4, 5)
 
     def test_out(self):
         print(self.r.display())
-        self.assertEqual(print(""*self.r.y+""+" "*self.r.x + "#" *
-                               self.r.width), self.r.display())
+        #value = self.r.display()
+        if self.r.y == 0:
+            self.assertEqual("#\n#\n",TestDisplay.store.getvalue())
 
     def test_out(self):
-        self.assertEqual(print(""*self.r1.y+""+" "*self.r1.x + "#" *
-                               self.r1.width, self.r1.display()))
+        print(self.r1.display())
+        x = "   ###\n   ###\nNone\n"
+        self.assertEqual(x, TestDisplay.store.getvalue())
 
     def test_out(self):
-        self.assertEqual(print(""*self.r2.y+""+" "*self.r2.x + "#" *
-                               self.r2.width), self.r2.display())
-
-    def test_out(self):
-        self.assertEqual(print(""*self.r3.y+""+" "*self.r3.x + "#" *
-                               self.r3.width), print(self.r3.display()))
+        print(self.r2.display())
+        x = ""
+        for i in range(self.r2.y):
+            x += ""
+            x += "\n"
+        for i in range(self.r2.height):
+            x += " "*self.r2.x + "#" * self.r2.width
+            x += "\n"
+        x += "None\n"
+        self.assertEqual(x, TestDisplay.store.getvalue())
 
 
 class TestToJson(unittest.TestCase):
