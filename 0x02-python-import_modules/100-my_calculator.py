@@ -15,8 +15,8 @@ def calculate():
         print("Unknown operator. Available operators: +, -, * and /")
         sys.exit(1)
     else:
-        arg_1 = arg_1
-        arg_2 = arg_2
+        arg_1 = sys.argv[1]
+        arg_2 = sys.argv[3]
         if sys.argv[2] == "*":
             result = mul(int(arg_1), int(arg_2))
             print("{} {} {} = {}".format(arg_1, operator, arg_2, result))
