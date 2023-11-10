@@ -26,6 +26,7 @@ def num_check(r_str):
     if length >= 2:
         j = 1
         while i < length:
+            result = 0
             try:
                 int_1 = rom_dict.get(r_str[i])
                 int_2 = rom_dict.get(r_str[j])
@@ -41,7 +42,6 @@ def num_check(r_str):
                 calc += result
                 break
             calc += result
-            result = 0
             if j <= length:
                 i = j + 1
                 j += 2
@@ -53,3 +53,4 @@ def num_check(r_str):
 
 if __name__ == "__main__":
     ans = roman_to_int(roman_string)
+    print(ans)
