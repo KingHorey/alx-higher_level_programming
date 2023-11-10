@@ -21,30 +21,30 @@ def num_check(r_str):
             "M": 1000
             }
     calc = 0
-    i = 0
     length = len(r_str)
+    i = length - 1
     if length >= 2:
-        j = 1
-        while i < length:
+        j = i - 1
+        while i >= 0:
             result = 0
             try:
                 int_1 = rom_dict.get(r_str[i])
                 int_2 = rom_dict.get(r_str[j])
-                if int_2 and int_1:
-                    if int_1 < int_2:
-                        result = int_2 - int_1
-                    elif int_1 == int_2:
-                        result += int_1 + int_2
+                if int_2 and int_1 and j > 0:
+                    if int_2 < int_1:
+                        result = int_1 - int_2
                     else:
                         result = int_1 + int_2
+                else:
+                    calc += int_1
             except IndexError:
-                result = int_1
-                calc += result
                 break
             calc += result
-            if j <= length:
-                i = j + 1
-                j += 2
+            if i > 0:
+                i = i - 2
+                j = i - 1
+            else:
+                break
     else:
         int_1 = rom_dict.get(r_str)
         calc += int_1
@@ -52,5 +52,5 @@ def num_check(r_str):
 
 
 if __name__ == "__main__":
-    ans = roman_to_int(roman_string)
-    print(ans)
+    roman_to_int(roman_string)
+    
