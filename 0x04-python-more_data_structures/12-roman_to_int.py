@@ -30,7 +30,7 @@ def num_check(r_str):
             try:
                 int_1 = rom_dict.get(r_str[i])
                 int_2 = rom_dict.get(r_str[j])
-                if int_2 and int_1 and j > 0:
+                if int_2 and int_1 and j >= 0:
                     if int_2 < int_1:
                         result = int_1 - int_2
                     else:
@@ -52,5 +52,4 @@ def num_check(r_str):
 
 
 if __name__ == "__main__":
-    roman_to_int(roman_string)
-    
+    roman_to_int("LXXXIX")
