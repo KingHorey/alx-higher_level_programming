@@ -1,21 +1,15 @@
 #!/usr/bin/python3
 
 def safe_print_list_integers(my_list=[], x=0):
-    lgth = sum(1 for i in my_list)
-    if (x <= lgth or x < 0):
-        i = 0
-        counter = 0
+    if my_list is not None:
+        """
+        get the length of the list
+        """
+        lgth = sum(1 for i in my_list)
+        count = 0
         for i in range(x):
-            try:
+            if isinstance(my_list[i], int):
                 print("{:d}".format(my_list[i]), end="")
-                counter += 1
-            except TypeError:
-                continue
-            except ValueError:
-                continue
+                count += 1
         print()
-        return (counter)
-    elif (not my_list):
-        raise IndexError
-    else:
-        raise IndexError
+        return (count)
