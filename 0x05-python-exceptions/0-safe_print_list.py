@@ -2,13 +2,13 @@
 
 def safe_print_list(my_list=[], x=0):
     if my_list is not None:
-        lgth = sum(1 for x in my_list)
+        lgth = sum(1 for _ in my_list)
     if (x >= 0):
         try:
             i = 0
             if x >= lgth:
                 x = lgth
-            while i < x:
+            while i <= x:
                 print(my_list[i], end="")
                 i += 1
             print()
