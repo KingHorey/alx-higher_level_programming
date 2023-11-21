@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 def safe_print_list(my_list=[], x=0):
-    if my_list:
+    if my_list is not None:
         lgth = sum(1 for x in my_list)
     if (x >= 0):
         try:
