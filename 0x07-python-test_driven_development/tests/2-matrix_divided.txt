@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+
+>>> matrix_divided = __import__('2-matrix_divided').matrix_divided
+>>> matrix = [[1,2,3],[4,5,6]]
+
+Examples:
+>>> matrix_divided(matrix, 3)
+[[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
+
+>>> try:
+...     matrix_divided(matrix, 0)
+... except Exception as e:
+...     print(e)
+division by zero
+
+>>> try:
+...     matrix_divided(None, 3)
+... except Exception as e:
+...     print(e)
+matrix must be a matrix (list of lists) of integers/floats
+
+>>> try:
+...     matrix_divided([[1, 3, "s"], [4, 10, 3]], 3)
+... except Exception as e:
+...     print(e)
+matrix must be a matrix (list of lists) of integers/floats
+
+>>> try:
+...     matrix_divided([[12, 3], [34, 5, 10]], 12)
+... except Exception as e:
+...     print(e)
+Each row of the matrix must have the same size
