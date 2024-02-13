@@ -1,0 +1,3 @@
+# A further reintroduction to JS
+
+NOTE: ALL CODES ARE SEMISTANDARD COMPLIANT
