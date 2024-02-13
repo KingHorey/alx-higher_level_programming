@@ -6,7 +6,7 @@ for file in *;
 do
 	if [ -x "$file" ]
 	then
-		echo "$file is executable"
+		continue;
 	else
 		echo "$file is not executable";
 		echo "Setting the executable bit on $file.....";
@@ -15,6 +15,9 @@ do
 done
 
 # git add all files
+echo "############################################
+### ALL FILES HAVE BEEN MADE EXECUTABLE  ###
+############################################"
 read -p "Do you want to add all files to the repository? (y/n) " response
 if [ "$response" = "y" ]
 then
