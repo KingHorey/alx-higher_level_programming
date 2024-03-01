@@ -1,0 +1,3 @@
+#!/bin/bash
+# SEND A GET REQUEST, ADD HEADER VARIABLE AND DISPLAY THE BODY OF THE RESPONSE
+curl -s -X "GET" -H "X-School-User-Id: 98" "$1"
