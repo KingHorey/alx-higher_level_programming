@@ -10,8 +10,8 @@ def getGithubAPI():
     url = 'https://api.github.com/user'
     username = argv[1]
     password = argv[2]
-    headers = {'Authorization: token {}'.format(password)}
-    response = requests.get(url, headers=headers)
+    headers = {'Authorization': 'token {}'.format(password)}
+    response = requests.get(url, headers=headers, params={'username': username})
     print(response.json().get('id'))
 
 
