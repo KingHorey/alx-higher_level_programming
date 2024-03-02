@@ -12,7 +12,7 @@ def sendMail():
     data = {'email': email}
     response = requests.post(url, data)
 
-    print("Your email is: {}".format(response.text))
+    print(response.text)
 
 
 if __name__ == "__main__":
