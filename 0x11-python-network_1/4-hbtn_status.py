@@ -4,7 +4,7 @@
 import requests
 
 
-def runRequests():
+def runresponse():
     """ get the response from the server """
     url = "https://intranet.hbtn.io/status"
     response = requests.get(url)
@@ -14,4 +14,4 @@ def runRequests():
 
 
 if __name__ == "__main__":
-    runRequests()
+    runresponse()
