@@ -20,7 +20,7 @@ def send_mail_get_json():
     try:
         response = response.json()
         if response:
-            print("{[]} {}".format(response.get('id'), response.get('name')))
+            print("[{}] {}".format(response.get('id'), response.get('name')))
         else:
             print("No result")
     except ValueError:
