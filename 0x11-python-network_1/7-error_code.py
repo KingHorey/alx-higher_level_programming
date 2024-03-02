@@ -12,8 +12,8 @@ def try_request():
         response = requests.get(url)
         print(response.text)
     except requests.HTTPError as e:
-        if e.response.status_code >= 400:
-            print("Error code: {}".format(e.response.status_code))
+        if response.status_code >= 400:
+            print("Error code: {}".format(response.status_code))
 
 
 if __name__ == "__main__":
