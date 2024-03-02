@@ -10,7 +10,7 @@ def send_mail_get_json():
 
     if len(sys.argv) == 1:
         q = ""
-    else:
+    elif len(sys.argv) > 1:
         q = sys.argv[1]
 
     url = "http://0.0.0.0:5000/search_user"
