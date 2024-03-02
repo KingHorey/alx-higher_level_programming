@@ -23,7 +23,7 @@ def send_mail_get_json():
             print("{[]} {}".format(response.get('id'), response.get('name')))
         else:
             print("No result")
-    except requests.exceptions.JSONDecodeError:
+    except ValueError:
         print("Not a valid JSON")
 
 
