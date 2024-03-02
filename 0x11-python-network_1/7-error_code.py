@@ -12,7 +12,7 @@ def try_request():
         response = requests.get(url)
         response.raise_for_status()
         print(response.text)
-    except HTTPError as e:
+    except requests.HTTPError as e:
         if response.status_code >= 400:
             print("Error code: {}".format(response.status_code))
 
