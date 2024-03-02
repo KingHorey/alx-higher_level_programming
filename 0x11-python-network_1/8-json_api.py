@@ -8,15 +8,15 @@ import sys
 def send_mail_get_json():
     """ sends a POST request to server """
 
-    if len(sys.argv) == 1:
-        q = ""
-    elif len(sys.argv) > 1:
+    if len(sys.argv) > 1:
         q = sys.argv[1]
+    else:
+        q = ""
 
     url = "http://0.0.0.0:5000/search_user"
     data = {'q': q}
 
-    response = requests.post(url, data)
+    response = requests.post(url, data=data)
     try:
         response = response.json()
         if response:
