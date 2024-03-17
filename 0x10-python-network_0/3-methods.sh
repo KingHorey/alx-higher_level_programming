@@ -1,3 +1,3 @@
 #!/bin/bash
 # ASK SERVER TO RETURN A LIST OF METHODS IT SUPPORTS
-curl -sI --request OPTIONS "$1" | grep -i "Allow" | cut -d " " -f 2
+curl -sI "$1" | grep "Allow" | cut -d " " -f2-
